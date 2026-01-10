@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+
+:root {
+  --primary-yellow: #FFE81F;
+  --accent-red: #dc2626;
+  --accent-green: #16a34a;
+  --accent-blue: #2563eb;
+  --bg-dark: #050505;
+  --bg-gradient-start: #0a0a2a;
+  --bg-gradient-end: #101035;
+  --text-white: #ffffff;
+  --text-gray: #cbd5e1;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Cairo', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  direction: rtl;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+/* Shared Button Styles */
+.btn {
+  padding: 15px 30px;
+  border-radius: 12px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.2s, filter 0.2s;
+  color: white;
+}
+
+.btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
+.btn-green { background-color: var(--accent-green); }
+.btn-red { background-color: var(--accent-red); }
+/* navbar css */
+
+/* Navbar Base Layout */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.95);
+  border-bottom: 1px solid #222;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  backdrop-filter: blur(10px);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* contact css */
+/* Animation for the loading spinner */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Helper for Phone numbers */
+.dir-ltr {
+  direction: ltr;
+  display: inline-block;
+}
+/* recharge */
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* admin css */
+/* --- Admin Panel Global Layout --- */
+.admin-page {
+  padding-bottom: 80px;
+}
+
+/* Horizontal scroll container for the table on small screens */
+.admin-card {
+  background: #111111 !important;
+  border: 1px solid #333333;
+  border-radius: 15px;
+  overflow-x: auto; /* Fixes overlapping on mobile */
+  margin-top: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Status Colors */
+.status-pill.PENDING { background: rgba(234, 179, 8, 0.2); color: #eab308; border: 1px solid #eab308; }
+.status-pill.COMPLETED { background: rgba(22, 163, 74, 0.2); color: #16a34a; border: 1px solid #16a34a; }
+.status-pill.REJECTED { background: rgba(220, 38, 38, 0.2); color: #ef4444; border: 1px solid #ef4444; }

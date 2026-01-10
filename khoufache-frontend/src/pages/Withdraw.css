@@ -1,0 +1,307 @@
+/* =========================================
+   WITHDRAW PAGE MAIN WRAPPER
+   ========================================= */
+.withdraw-page {
+    padding-bottom: 80px;
+    min-height: 100vh;
+}
+
+.withdraw-header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-dark) 100%);
+}
+
+.withdraw-header h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #ffffff !important;
+    margin-bottom: 10px;
+}
+
+.withdraw-header p {
+    color: #cbd5e1 !important;
+    font-size: 1.1rem;
+}
+
+.withdraw-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================================
+   WITHDRAW SELECTION GRID
+   ========================================= */
+.withdraw-selection-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 25px !important;
+    margin-top: 20px !important;
+}
+
+.withdraw-card {
+    background: #111111 !important;
+    border: 1px solid #333333 !important;
+    border-radius: 24px !important;
+    padding: 45px 25px !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.withdraw-card:hover {
+    transform: translateY(-10px) !important;
+    border-color: var(--primary-yellow) !important;
+    background: #161616 !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7) !important;
+}
+
+.withdraw-card .icon-circle {
+    width: 85px !important;
+    height: 85px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 25px !important;
+}
+
+.withdraw-card h3 {
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin-bottom: 12px !important;
+}
+
+.withdraw-card p {
+    color: #a1a1aa !important;
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+}
+
+/* =========================================
+   MELFOOT FORM LAYOUT (The Split View)
+   ========================================= */
+.melfoot-form-layout {
+    display: flex;
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    max-width: 1000px;
+    margin: 40px auto;
+    color: #1a1a1a;
+}
+
+/* Left Info Column */
+.melfoot-info-col {
+    width: 35%;
+    background-color: #f8fafc;
+    padding: 50px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-left: 1px solid #e2e8f0;
+}
+
+.bank-illustration img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.bank-illustration h3 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: #0f172a;
+}
+
+.info-box {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    width: 100%;
+}
+
+/* Right Input Column */
+.melfoot-input-col {
+    width: 65%;
+    padding: 40px 50px;
+    background: white;
+}
+
+.form-header-simple {
+    margin-bottom: 30px;
+}
+
+.back-link {
+    background: #f1f5f9;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: #475569;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.back-link:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.melfoot-form .form-group {
+    margin-bottom: 20px;
+}
+
+.melfoot-form label {
+    display: block;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #334155;
+    font-size: 0.9rem;
+}
+
+.melfoot-form input, 
+.melfoot-form select {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #1e293b;
+    outline: none;
+}
+
+.melfoot-form input:focus {
+    border-color: var(--accent-blue);
+    background: white;
+}
+
+/* Phone Input Special Styling */
+.phone-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.phone-input-wrapper input {
+    padding-left: 50px;
+}
+
+.country-badge {
+    position: absolute;
+    left: 15px;
+    font-size: 1.2rem;
+}
+
+/* File Input Special Styling */
+.file-input-wrapper {
+    position: relative;
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f9fafb;
+}
+
+.file-input-wrapper input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.fake-file-btn {
+    background: #0f172a;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.file-name {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.melfoot-submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: #000;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.melfoot-submit-btn:hover:not(:disabled) {
+    background: var(--accent-red);
+    transform: translateY(-2px);
+}
+
+.melfoot-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.success-message {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.success-message h3 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #10b981;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 900px) {
+    .melfoot-form-layout {
+        flex-direction: column;
+    }
+    .melfoot-info-col, 
+    .melfoot-input-col {
+        width: 100%;
+    }
+    .melfoot-info-col {
+        border-left: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+}
+
+@media (max-width: 768px) {
+    .withdraw-header h2 {
+        font-size: 2rem;
+    }
+    .withdraw-selection-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .melfoot-input-col {
+        padding: 30px 20px;
+    }
+}

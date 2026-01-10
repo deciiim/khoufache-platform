@@ -1,0 +1,94 @@
+/* Logo Styling */
+.nav-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  z-index: 1001; /* Stay above mobile menu */
+}
+
+.main-logo-img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 3px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* Desktop Links */
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary-yellow) !important;
+}
+
+/* Mobile Toggle Button */
+.mobile-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: none;
+  z-index: 1001;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (PHONES)
+   ========================================= */
+@media (max-width: 992px) {
+  .mobile-menu-btn {
+    display: block; /* Show menu icon on mobile */
+  }
+
+  .nav-links {
+    /* Create a Full-Screen Overlay for Mobile */
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden by default */
+    width: 80%; /* Takes most of the screen */
+    height: 100vh;
+    background: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    gap: 40px;
+    border-left: 1px solid #222;
+    z-index: 1000;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  }
+
+  /* When Menu is Open */
+  .nav-links.mobile-open {
+    right: 0; /* Slide in */
+  }
+
+  .nav-link {
+    font-size: 1.4rem; /* Larger text for fingers */
+    width: 100%;
+    justify-content: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .nav-link:last-child {
+    border-bottom: none;
+  }
+}
