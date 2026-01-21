@@ -104,14 +104,27 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Platforms Footer */}
+      {/* Platforms Footer (UPDATED WITH LINKS) */}
       <div className="platforms-section relative z-10">
         <div className="container text-center">
           <span className="payment-title" style={{color: '#666', fontSize: '0.9rem'}}>المنصات المدعومة</span>
           <div className="logos-row grayscale-hover">
-            <img src={xbetImg} alt="1xBet" className="platform-logo" />
-            <img src={melbetImg} alt="Melbet" className="platform-logo" />
-            <img src={linebetImg} alt="Linebet" className="platform-logo" />
+            
+            {/* 1XBET LINK */}
+            <a href="https://refpa58144.com/L?tag=d_4835273m_1573c_&site=4835273&ad=1573" target="_blank" rel="noopener noreferrer">
+              <img src={xbetImg} alt="1xBet" className="platform-logo cursor-pointer" />
+            </a>
+
+            {/* MELBET LINK */}
+            <a href="https://melbet-ma.com/en?tag=d_4843377m_45415c_" target="_blank" rel="noopener noreferrer">
+              <img src={melbetImg} alt="Melbet" className="platform-logo cursor-pointer" />
+            </a>
+
+            {/* LINEBET LINK */}
+            <a href="https://lb-aff.com/L?tag=d_4842780m_22611c_site&site=4842780&ad=22611&r=registration" target="_blank" rel="noopener noreferrer">
+              <img src={linebetImg} alt="Linebet" className="platform-logo cursor-pointer" />
+            </a>
+
           </div>
         </div>
       </div>
