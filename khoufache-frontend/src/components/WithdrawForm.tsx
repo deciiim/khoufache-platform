@@ -173,7 +173,7 @@ export default function WithdrawForm({ config, onBack }: Props) {
             </div>
 
             <div className="form-group">
-              <label>كود السحب (إن وجد)</label>
+              <label>كود السحب</label>
               <input type="text" placeholder="أدخل كود السحب من التطبيق" 
                 value={formData.code} onChange={e => setFormData({...formData, code: e.target.value})} />
             </div>
