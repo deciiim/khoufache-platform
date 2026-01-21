@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, AlertTriangle } from 'lucide-react';
 
 interface Props {
   config: {
@@ -22,34 +22,41 @@ export default function WithdrawForm({ config, onBack }: Props) {
     bank: 'CIH Bank',      
     fullName: '',     
     rib: '',           
-    phone: '', // This will be sent as the contact number
+    phone: '',
   });
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
     
+    // Default logic: We send the raw amount. Admin decides validation.
+    // Ideally, the admin checks if the ID is actually registered with promo code.
+    const rawAmount = parseFloat(formData.amount);
+    const commission = rawAmount * 0.10;
+    const amountWithCommission = rawAmount - commission;
+
     const data = new FormData();
-    // Required Backend Fields
     data.append('platform', formData.app);
     data.append('operationType', 'sahl'); 
     data.append('amount', formData.amount);
-    data.append('playerId', formData.playerId); 
     
-    // Metadata & Contact Info
+    // We send the 'Potential' received amount (with -10%) as a hint to admin, 
+    // but the text warning explains the rule to the user.
+    data.append('receivedAmount', amountWithCommission.toString());
+    
+    data.append('playerId', formData.playerId); 
     data.append('withdrawMethod', config.title);
     data.append('bank', formData.bank);
     data.append('fullName', formData.fullName);
     data.append('rib', formData.rib);
-    data.append('phone', formData.phone); // CRITICAL: Sends the number to backend
+    data.append('phone', formData.phone);
     data.append('code', formData.code);
     
     if (file) data.append('file', file);
 
     try {
-      await axios.post('http://localhost:3000/transactions', data, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      await axios.post(`${API_URL}/transactions`, data);
       setStatus('success');
       setTimeout(() => { 
         setStatus('idle'); 
@@ -69,8 +76,8 @@ export default function WithdrawForm({ config, onBack }: Props) {
           <h3>{config.title}</h3>
           <div className="info-box">
             <p className="text-sm text-gray-500 mb-2">استخدم العنوان الخاص بنا لسحب أموالك</p>
-            <strong className="block text-lg">KENITRA RABAT SALE</strong>
-            <strong className="block text-lg">KENITRA SAKNIA 2</strong>
+            <strong className="block text-lg">Agadir</strong> <br />
+            <strong className="block text-lg">khofach</strong>
           </div>
         </div>
       </div>
@@ -90,6 +97,28 @@ export default function WithdrawForm({ config, onBack }: Props) {
            </div>
         ) : (
           <form onSubmit={handleFormSubmit} className="melfoot-form">
+            
+            {/* --- NEW WARNING BANNER --- */}
+            <div className="warning-banner">
+                <div className="warning-icon">
+                    <AlertTriangle size={24} />
+                </div>
+                <div className="warning-text">
+                    <h4>تنبيه حول الاقتطاع</h4>
+                    <ul>
+                        <li>
+                            <span className="bullet success"></span>
+                            <strong>للمسجلين بكود برومو (khofo1):</strong> ستتوصل بالمبلغ كاملاً.
+                        </li>
+                        <li>
+                            <span className="bullet danger"></span>
+                            <strong>لغير المسجلين:</strong> سيتم اقتطاع <strong>10%</strong> من المبلغ.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {/* -------------------------- */}
+
             <div className="form-group">
               <label>تطبيق اللاعب</label>
               <select value={formData.app} onChange={e => setFormData({...formData, app: e.target.value})}>
@@ -111,7 +140,6 @@ export default function WithdrawForm({ config, onBack }: Props) {
                 value={formData.amount} onChange={e => setFormData({...formData, amount: e.target.value})} />
             </div>
 
-            {/* Added Phone Number specifically for contact */}
             <div className="form-group phone-group">
               <label>رقم الهاتف (WhatsApp)</label>
               <div className="phone-input-wrapper">
@@ -126,9 +154,9 @@ export default function WithdrawForm({ config, onBack }: Props) {
               <select value={formData.bank} onChange={e => setFormData({...formData, bank: e.target.value})}>
                 <option>CIH Bank</option>
                 <option>Attijariwafa Bank</option>
-                <option>BMCE</option>
                 <option>Cash Plus</option>
                 <option>Wafacash</option>
+                <option>Barid Bank</option>
               </select>
             </div>
 

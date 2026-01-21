@@ -12,26 +12,33 @@ export class TransactionsService {
     private transactionRepository: Repository<Transaction>,
   ) {}
 
-  // Save a new order to the database
+
   async create(createTransactionDto: CreateTransactionDto) {
-    // FIX: We convert the DTO into the Entity format manually
-    // This solves the "string | number" error by forcing it to be a Number
+
     const newTransaction = this.transactionRepository.create({
       ...createTransactionDto,
-      amount: Number(createTransactionDto.amount), 
+
+      amount: Number(createTransactionDto.amount),
+
+      receivedAmount: createTransactionDto.receivedAmount 
+        ? Number(createTransactionDto.receivedAmount) 
+        : undefined,
+
+      usedPromo: String(createTransactionDto.usedPromo) === 'true',
+
     });
 
     return await this.transactionRepository.save(newTransaction);
   }
 
-  // Get all orders (Admin Dashboard uses this)
+
   async findAll() {
     return await this.transactionRepository.find({
-      order: { createdAt: 'DESC' } // Newest orders first
+      order: { createdAt: 'DESC' },
     });
   }
 
-  // Get one specific order
+
   async findOne(id: number) {
     const transaction = await this.transactionRepository.findOneBy({ id });
     if (!transaction) {
@@ -40,17 +47,16 @@ export class TransactionsService {
     return transaction;
   }
 
-  // Update status (e.g., from PENDING to COMPLETED)
+
   async update(id: number, updateTransactionDto: UpdateTransactionDto) {
-    const transaction = await this.findOne(id); // Check if it exists first
+    const transaction = await this.findOne(id);
     
-    // Apply the updates
+
     Object.assign(transaction, updateTransactionDto);
     
     return await this.transactionRepository.save(transaction);
   }
 
-  // Delete an order
   async remove(id: number) {
     const transaction = await this.findOne(id);
     return await this.transactionRepository.remove(transaction);

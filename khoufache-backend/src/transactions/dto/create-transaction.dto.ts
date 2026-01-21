@@ -13,13 +13,32 @@ export class CreateTransactionDto {
   @IsNotEmpty()
   playerId: string;
 
-  // FormData sends numbers as strings, so we validate it accordingly
+  // FormData sends numbers as strings, so we allow both
   @IsNotEmpty()
   amount: string | number;
 
+  // --- NEW: Calculation Fields ---
+  @IsOptional()
+  receivedAmount?: string | number;
+
+  @IsOptional()
+  // Validates 'true' or 'false' strings from FormData
+  usedPromo?: string | boolean; 
+
+  // --- NEW: Payment Method Label ---
   @IsOptional()
   @IsString()
-  proofScreenshot?: string;
+  paymentMethod?: string;
+
+  // --- IMAGES (FILENAMES) ---
+  
+  @IsOptional()
+  @IsString()
+  proofScreenshot?: string; // Standard Payment Receipt
+
+  @IsOptional()
+  @IsString()
+  promoScreenshot?: string; // <--- NEW: Proof of Promo (Like/Share)
 
   @IsOptional()
   @IsString()
@@ -42,12 +61,7 @@ export class CreateTransactionDto {
   @IsOptional()
   @IsString()
   rib?: string;
-
-  /**
-   * The user's contact number.
-   * Using IsNumberString ensures only numeric characters are accepted,
-   * which is ideal for Moroccan phone numbers (e.g., 06XXXXXXXX).
-   */
+  
   @IsNotEmpty({ message: 'رقم الهاتف مطلوب للتواصل معكم' })
   @IsNumberString({}, { message: 'المرجو إدخال رقم هاتف صحيح' })
   phone: string;

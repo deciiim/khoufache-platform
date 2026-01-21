@@ -1,5 +1,7 @@
-node_modules
+/node_modules
+/dist
 .env
-dist
-build
 .DS_Store
+# Ignore uploaded files but keep the folder structure
+/uploads/*
+!/uploads/.gitkeep

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Upload, CreditCard } from 'lucide-react';
+import './Home.css';
 
 // Import Payment Assets
 import cihImg from '../assets/Cih-bank.png';
@@ -12,20 +13,36 @@ import inwiImg from '../assets/inwi.png';
 import xbetImg from '../assets/1x.png';
 import melbetImg from '../assets/MEL.jpeg';
 import linebetImg from '../assets/line.png';
-import './Home.css'; // <--- ADD THIS LINE
+import Promoimage from '../assets/promo.jpg'
+
 export default function Home() {
   const navigate = useNavigate();
 
   return (
     <div className="home-wrapper">
       
-      {/* Animated Bat Background */}
+      {/* --- THE BAT SWARM (UPDATED) --- */}
       <div className="bat-bg">
-        <div className="bat"></div>
-        <div className="bat"></div>
-        <div className="bat"></div>
-        <div className="bat"></div>
+        {/* Foreground bats (larger, faster) */}
+        <div className="bat left" style={{ top: '15%' }}></div>
+        <div className="bat right" style={{ top: '35%', animationDelay: '2s' }}></div>
+        <div className="bat left" style={{ top: '55%', animationDelay: '4s' }}></div>
+        <div className="bat right" style={{ top: '75%', animationDelay: '1s' }}></div>
+
+        {/* Mid-ground bats (medium size) */}
+        <div className="bat left medium" style={{ top: '10%', animationDelay: '7s', animationDuration: '20s' }}></div>
+        <div className="bat right medium" style={{ top: '45%', animationDelay: '5s', animationDuration: '22s' }}></div>
+        <div className="bat left medium" style={{ top: '65%', animationDelay: '9s', animationDuration: '19s' }}></div>
+        <div className="bat right medium" style={{ top: '85%', animationDelay: '3s', animationDuration: '21s' }}></div>
+
+        {/* Background bats (small, slower, blurred) */}
+        <div className="bat left small" style={{ top: '5%', animationDelay: '12s', animationDuration: '25s' }}></div>
+        <div className="bat right small" style={{ top: '25%', animationDelay: '15s', animationDuration: '28s' }}></div>
+        <div className="bat left small" style={{ top: '50%', animationDelay: '10s', animationDuration: '26s' }}></div>
+        <div className="bat right small" style={{ top: '70%', animationDelay: '18s', animationDuration: '30s' }}></div>
+        <div className="bat left tiny" style={{ top: '90%', animationDelay: '20s', animationDuration: '35s' }}></div>
       </div>
+      {/* ------------------------------- */}
 
       {/* Hero Section */}
       <div className="hero-section relative z-10">
@@ -38,12 +55,11 @@ export default function Home() {
                 حصري و <span className="text-highlight">جديد</span>
               </h1>
               <p>
-                جوائز و هدايا كل شهر مع منصة <span className="text-highlight">Khoufach</span>. 
+                جوائز و هدايا كل شهر مع منصة <span className="text-highlight">Khofach</span>. 
                 اشحن حسابك في 30 ثانية واستفد من أسرع خدمة في المغرب.
               </p>
               
               <div className="btn-group">
-                {/* Updated: Links to internal Recharge Page */}
                 <button 
                   onClick={() => navigate('/recharge')}
                   className="btn btn-green"
@@ -65,8 +81,8 @@ export default function Home() {
             {/* Image Side */}
             <div className="hero-image-wrapper">
                <img 
-                 src="https://placehold.co/600x400/1e1e1e/FFD700?text=Khoufach+Promo" 
-                 alt="Promo" 
+                 src={Promoimage}
+                 alt="Code Promo" 
                  className="hero-image"
                />
             </div>

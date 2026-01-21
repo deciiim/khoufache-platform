@@ -305,3 +305,53 @@
         padding: 30px 20px;
     }
 }
+/* --- WARNING BANNER STYLES --- */
+.warning-banner {
+  background: rgba(255, 240, 200, 0.1); /* Very subtle orange/yellow bg */
+  border: 1px solid rgba(250, 204, 21, 0.4); /* Yellow border */
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  direction: rtl;
+}
+
+.warning-icon {
+  color: #facc15; /* Yellow icon */
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.warning-text h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  color: #facc15;
+  font-weight: 800;
+}
+
+.warning-text ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.warning-text li {
+  font-size: 0.85rem;
+  color: #000000;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.bullet.success { background-color: #22c55e; box-shadow: 0 0 5px #22c55e; }
+.bullet.danger { background-color: #ef4444; box-shadow: 0 0 5px #ef4444; }

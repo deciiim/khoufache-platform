@@ -6,7 +6,7 @@
   justify-content: center;
   background-color: #050505;
   background-image: radial-gradient(circle at 50% 50%, #111 0%, #000 100%);
-  padding: 15px; /* Smaller padding for mobile edges */
+  padding: 15px;
   font-family: 'Inter', sans-serif;
   overflow: hidden;
 }
@@ -16,7 +16,7 @@
   background: #0d0d0d;
   width: 100%;
   max-width: 400px;
-  padding: 35px 25px; /* Reduced padding for mobile */
+  padding: 35px 25px;
   border-radius: 24px;
   border: 1px solid #1a1a1a;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
@@ -36,7 +36,7 @@
 }
 
 .bat-logo {
-  font-size: 2.8rem; /* Slightly smaller for mobile */
+  font-size: 2.8rem;
   margin-bottom: 10px;
   display: inline-block;
   animation: float 3s ease-in-out infinite;
@@ -49,7 +49,7 @@
 
 .login-header h2 {
   color: #fff;
-  font-size: 1.6rem; /* Scaled down for mobile */
+  font-size: 1.6rem;
   font-weight: 900;
   margin: 0 0 8px 0;
   letter-spacing: -0.5px;
@@ -61,7 +61,7 @@
   margin: 0;
 }
 
-/* --- FORM INPUTS (Tapping Optimized) --- */
+/* --- FORM INPUTS --- */
 .input-group {
   position: relative;
   margin-bottom: 15px;
@@ -74,7 +74,7 @@
   transform: translateY(-50%);
   color: #444;
   pointer-events: none;
-  width: 18px; /* Slightly smaller icons */
+  width: 18px;
 }
 
 .input-group input {
@@ -82,12 +82,12 @@
   background: #111;
   border: 1px solid #222;
   border-radius: 12px;
-  padding: 14px 45px 14px 14px; /* Optimized padding for RTL icon */
+  padding: 14px 45px 14px 14px;
   color: #fff;
-  font-size: 16px; /* 16px prevents iOS from auto-zooming into input fields */
+  font-size: 16px;
   transition: all 0.2s ease;
   box-sizing: border-box;
-  -webkit-appearance: none; /* Removes mobile browser default styles */
+  -webkit-appearance: none;
 }
 
 .input-group input:focus {
@@ -96,52 +96,77 @@
   background: #151515;
 }
 
-/* --- ERROR MESSAGE --- */
+.input-group input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --- ENHANCED ERROR MESSAGE --- */
 .error-msg {
   background: rgba(239, 68, 68, 0.1);
   color: #ff4d4d;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 12px;
+  border-radius: 12px;
   margin-bottom: 15px;
-  text-align: center;
-  border: 1px solid rgba(239, 68, 68, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  animation: shake 0.4s ease-in-out;
 }
 
-/* --- LOGIN BUTTON (Finger-Friendly) --- */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* --- LOGIN BUTTON & LOADING STATE --- */
 .login-btn {
   width: 100%;
   background: #fae81f;
   color: #000;
   border: none;
-  padding: 16px; /* Larger hit area for thumbs */
+  padding: 16px;
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 900;
   cursor: pointer;
-  transition: transform 0.1s active;
+  transition: all 0.2s ease;
   margin-top: 5px;
   -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-btn:active {
-  transform: scale(0.98); /* Tactile feedback on press */
-  background: #fff;
+  transform: scale(0.98);
 }
 
-/* --- MOBILE SPECIFIC FIXES (Media Queries) --- */
+.login-btn.loading {
+  background: #444;
+  color: #888;
+  cursor: wait;
+}
+
+.login-btn:disabled {
+  opacity: 0.7;
+}
+
+/* --- MOBILE SPECIFIC FIXES --- */
 @media (max-width: 380px) {
   .login-card {
     padding: 25px 15px;
   }
-  
   .login-header h2 {
     font-size: 1.4rem;
   }
 }
 
-/* Prevents layout shifts when mobile keyboard opens */
 @media (max-height: 500px) {
   .login-page {
     align-items: flex-start;

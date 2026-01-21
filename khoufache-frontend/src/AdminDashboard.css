@@ -1,6 +1,12 @@
 /* --- ADMIN PAGE CORE --- */
+:root {
+  --primary-yellow: #fae81f;
+  --dark-bg: #050505;
+  --panel-bg: #0d0d0d;
+}
+
 .admin-page {
-  background-color: #050505;
+  background-color: var(--dark-bg);
   min-height: 100vh;
   color: #fff;
   font-family: 'Inter', sans-serif;
@@ -143,7 +149,7 @@
 
 /* --- DATA TABLE CARD --- */
 .admin-card {
-  background: #0d0d0d;
+  background: var(--panel-bg);
   border-radius: 20px;
   border: 1px solid #1a1a1a;
   overflow: hidden;
@@ -195,10 +201,77 @@
   font-size: 0.85rem;
 }
 
+.method-label-mini {
+  font-size: 0.7rem;
+  background: #222;
+  color: #aaa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 4px;
+  display: inline-block;
+  width: fit-content;
+  border: 1px solid #333;
+}
+
+/* --- AMOUNT & PROMO STYLES (NEW) --- */
 .amount-cell {
+  vertical-align: top;
+}
+
+.amount-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.main-amount {
   font-weight: 900;
   color: #fff;
   font-size: 1.1rem;
+}
+
+.promo-status-row {
+  margin: 2px 0;
+}
+
+.promo-tag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+/* Style for ✅ */
+.promo-tag.success {
+  background: rgba(34, 197, 94, 0.15); /* Low opacity green bg */
+  color: #22c55e; /* Bright green text */
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* Style for ❌ */
+.promo-tag.fail {
+  background: rgba(239, 68, 68, 0.15); /* Low opacity red bg */
+  color: #ef4444; /* Bright red text */
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.received-total {
+  font-size: 0.85rem;
+  color: #fff;
+  font-weight: 700;
+  border-top: 1px dashed #222;
+  padding-top: 6px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.received-total span {
+  color: var(--primary-yellow);
+  font-weight: 900;
 }
 
 /* --- DETAILS STACK --- */
@@ -213,12 +286,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.contact-box .label {
-  font-size: 0.7rem;
-  color: #444;
-  font-weight: 800;
 }
 
 .whatsapp-contact-btn {
@@ -362,6 +429,36 @@
 .action-btn:hover {
   transform: translateY(-2px);
   filter: brightness(1.2);
+}
+.proofs-row {
+  display: flex;
+  gap: 10px;
+}
+
+.proof-thumbnail-container.promo-proof {
+  border-color: #facc15; /* Yellow border for promo proof */
+}
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter-label {
+  font-size: 0.7rem;
+  color: #666;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Adjust header actions to fit both filters */
+.header-actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 /* --- RESPONSIVE --- */

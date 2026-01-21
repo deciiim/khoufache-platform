@@ -57,23 +57,23 @@ export default function Contact() {
               <div className="contact-methods">
                 <div className="method-row">
                   <div className="icon-box"><Phone size={20} /></div>
-                  <span className="method-text dir-ltr">212607547900</span>
+                  <span className="method-text dir-ltr">0726779414</span>
                 </div>
 
                 <div className="method-row">
                   <div className="icon-box"><Mail size={20} /></div>
-                  <span className="method-text text-sm">youssefabayda207@gmail.com</span>
+                  <span className="method-text text-sm">khofachbetma@gmail.com</span>
                 </div>
 
                 <div className="method-row">
                   <div className="icon-box"><MapPin size={20} /></div>
-                  <span className="method-text">Taroudant, Morocco</span>
+                  <span className="method-text">Agadir, Morocco</span>
                 </div>
               </div>
             </div>
 
             <div className="info-footer relative z-10">
-              © 2026 Khoufache. All rights reserved.
+              © 2026 Khofach. All rights reserved.
             </div>
           </div>
 

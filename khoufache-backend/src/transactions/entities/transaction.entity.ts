@@ -11,25 +11,37 @@ export class Transaction {
   @Column()
   operationType: string; // 'recharge' or 'sahl'
 
+  // --- NEW: Payment Method Label ---
+  @Column({ nullable: true })
+  paymentMethod: string; // Stores 'CIH Bank', 'Orange Dealer', etc.
+
   @Column()
   playerId: string; // Betting ID
 
   @Column('decimal', { precision: 10, scale: 2 })
-  amount: number;
+  amount: number; // The raw amount entered by the user
+
+  // --- NEW: Calculation & Promo Tracking ---
+  @Column('decimal', { precision: 10, scale: 2, nullable: true })
+  receivedAmount: number; // Final amount after 10% commission (or 0% if promo used)
+
+  @Column({ default: false })
+  usedPromo: boolean; // True if the user toggled the "Khoufache" promo code
 
   @Column({ nullable: true })
-  proofScreenshot: string;
+  proofScreenshot: string; // The Payment Receipt
+
+  // --- NEW: Promo Proof Screenshot ---
+  @Column({ nullable: true })
+  promoScreenshot: string; // <--- NEW COLUMN for the "Like/Share" proof
 
   @Column({ default: 'PENDING' })
   status: string;
 
-  // --- CONTACT FIELD (Mandatory for all operations) ---
-  
-  @Column() // Removed nullable: true to make it required
-  phone: string; // The user's WhatsApp or contact number
+  @Column() 
+  phone: string; // User's WhatsApp number
 
-  // --- NEW FIELDS FOR WITHDRAWAL (SAHL) ---
-  
+  // --- WITHDRAWAL (SAHL) FIELDS ---
   @Column({ nullable: true })
   withdrawMethod: string; 
 
@@ -44,8 +56,6 @@ export class Transaction {
 
   @Column({ nullable: true })
   code: string; 
-
-  // ----------------------------------------
 
   @CreateDateColumn()
   createdAt: Date;

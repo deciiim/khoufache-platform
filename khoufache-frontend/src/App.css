@@ -116,3 +116,75 @@ body {
 .status-pill.PENDING { background: rgba(234, 179, 8, 0.2); color: #eab308; border: 1px solid #eab308; }
 .status-pill.COMPLETED { background: rgba(22, 163, 74, 0.2); color: #16a34a; border: 1px solid #16a34a; }
 .status-pill.REJECTED { background: rgba(220, 38, 38, 0.2); color: #ef4444; border: 1px solid #ef4444; }
+/* --- RED ATMOSPHERE FOG --- */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 50% 120%, rgba(220, 38, 38, 0.2), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+  animation: pulseRed 5s ease-in-out infinite;
+}
+
+@keyframes pulseRed {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* --- BAT ANIMATION DEFINITIONS --- */
+@keyframes flyRight {
+  0% { transform: translateX(-10vw) translateY(10vh) scale(0.5); }
+  50% { transform: translateX(50vw) translateY(-5vh) scale(0.8); }
+  100% { transform: translateX(110vw) translateY(5vh) scale(0.6); }
+}
+
+@keyframes flyLeft {
+  0% { transform: translateX(110vw) translateY(20vh) scale(0.6) scaleX(-1); } /* scaleX(-1) flips the bat */
+  50% { transform: translateX(50vw) translateY(5vh) scale(0.9) scaleX(-1); }
+  100% { transform: translateX(-10vw) translateY(15vh) scale(0.7) scaleX(-1); }
+}
+
+@keyframes flap {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.6); } /* Rapid wing flap */
+}
+
+/* --- UPDATED BAT STYLES --- */
+.bat-container, .bat-bg {
+  position: fixed; /* Use fixed so they stay even when scrolling */
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bat {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  /* --- CHANGED SVG COLOR TO LIGHT GRAY (%23e5e7eb) --- */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 105 55'%3E%3Cpath fill='%23e5e7eb' d='M52.5 45c-15 0-25-10-35-10-5 0-10 5-17.5 20-5-20 0-40 10-50 10 10 20 5 25 20 5-15 15-10 25-20 10 10 15 30 10 50-7.5-15-12.5-20-17.5-20-10 0-20 10-35 10z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.4; /* Ghostly appearance */
+  filter: drop-shadow(0 2px 3px rgba(255,255,255,0.1)); /* Subtle light glow */
+}
+
+/* Apply flapping animation */
+.bat::after {
+  content: '';
+  display: block;
+  width: 100%; height: 100%;
+  animation: flap 0.2s infinite alternate;
+}
+
+/* --- SIZE VARIATIONS FOR DEPTH --- */
+.bat.medium { width: 40px; height: 24px; opacity: 0.3; }
+.bat.small { width: 30px; height: 18px; opacity: 0.25; filter: blur(1px); }
+.bat.tiny { width: 20px; height: 12px; opacity: 0.2; filter: blur(2px); }
+
+/* --- ANIMATION DIRECTIONS --- */
+/* Ensure these keyframes exist in your CSS */
+.bat.left { animation: flyRight 15s linear infinite; top: 20%; }
+.bat.right { animation: flyLeft 18s linear infinite; top: 40%; }

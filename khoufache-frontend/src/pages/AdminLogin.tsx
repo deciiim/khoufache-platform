@@ -1,27 +1,41 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Lock, User } from 'lucide-react';
+import { Lock, User, ShieldAlert } from 'lucide-react';
 import './AdminLogin.css';
 
 export default function AdminLogin() {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // Use the environment variable for the API URL
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
+    
     try {
       // 1. Send login request to backend
-      const res = await axios.post('http://localhost:3000/auth/login', credentials);
+      const res = await axios.post(`${API_URL}/auth/login`, credentials);
       
       // 2. Save the token in LocalStorage
       localStorage.setItem('adminToken', res.data.access_token);
       
       // 3. Redirect to the Dashboard
       navigate('/admin');
-    } catch (err) {
-      setError('خطأ في اسم المستخدم أو كلمة المرور');
+    } catch (err: any) {
+      console.error("Login Error:", err);
+      if (err.response?.status === 401) {
+        setError('خطأ في اسم المستخدم أو كلمة المرور');
+      } else {
+        setError('تعذر الاتصال بالخادم. يرجى المحاولة لاحقاً');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,6 +55,7 @@ export default function AdminLogin() {
               type="text" 
               placeholder="اسم المستخدم" 
               required
+              disabled={loading}
               onChange={(e) => setCredentials({...credentials, username: e.target.value})}
             />
           </div>
@@ -51,13 +66,25 @@ export default function AdminLogin() {
               type="password" 
               placeholder="كلمة المرور" 
               required
+              disabled={loading}
               onChange={(e) => setCredentials({...credentials, password: e.target.value})}
             />
           </div>
 
-          {error && <p className="error-msg">{error}</p>}
+          {error && (
+            <div className="error-msg">
+              <ShieldAlert size={16} />
+              <span>{error}</span>
+            </div>
+          )}
 
-          <button type="submit" className="login-btn">تسجيل الدخول</button>
+          <button 
+            type="submit" 
+            className={`login-btn ${loading ? 'loading' : ''}`}
+            disabled={loading}
+          >
+            {loading ? 'جاري التحقق...' : 'تسجيل الدخول'}
+          </button>
         </form>
       </div>
     </div>

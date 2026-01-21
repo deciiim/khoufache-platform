@@ -1,5 +1,6 @@
 import { PlayCircle } from 'lucide-react';
-import './VideoExplain.css'; // <--- ADD THIS LINE
+import videoSource from '../assets/tutorial.mp4'; // <--- Import your video here
+import './VideoExplain.css';
 
 export default function VideoExplain() {
   return (
@@ -11,7 +12,7 @@ export default function VideoExplain() {
             شرح طريقة <span className="text-highlight">السحب والإيداع</span>
           </h1>
           <p>
-            شاهد هذا الفيديو القصير لتعرف كيف تقوم بشحن حسابك أو سحب أرباحك في ثواني عبر منصة Khoufache.
+            شاهد هذا الفيديو القصير لتعرف كيف تقوم بسحب أرباحك في ثواني عبر منصة Khoufache.
           </p>
         </div>
 
@@ -19,22 +20,15 @@ export default function VideoExplain() {
         <div className="video-container-wrapper">
           <div className="video-player-card group">
             
-            {/* Play Button Overlay */}
-            <div className="video-overlay">
-              <div className="play-button-glow">
-                <PlayCircle size={48} className="text-white" />
-              </div>
-            </div>
-            
-            {/* Background Placeholder Image */}
-            <img 
-              src="https://placehold.co/800x450/111/white?text=Video+Tutorial" 
-              alt="Video Tutorial" 
-              className="video-placeholder-img" 
-            />
-            
-            {/* Replace the img above with this iframe when you have a link: */}
-            {/* <iframe className="actual-video" src="https://www.youtube.com/embed/YOUR_ID" allowFullScreen></iframe> */}
+            <video 
+              controls 
+              className="actual-video"
+              poster="https://placehold.co/800x450/111/FFD700?text=Khofach+tutorial" // Optional thumbnail
+            >
+              <source src={videoSource} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
           </div>
         </div>
 

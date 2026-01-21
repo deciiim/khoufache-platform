@@ -1,6 +1,6 @@
 import { MessageCircle, Building2 } from 'lucide-react';
 
-const WHATSAPP_NUMBER = "212607547900"; 
+const WHATSAPP_NUMBER = "212726779414"; 
 
 interface Props {
   // Updated type to only allow 'bank'
