@@ -246,7 +246,7 @@ export default function Recharge() {
                     <div className="promo-upload-mini animate-fade-in">
                         <label className="promo-upload-label">
                             <ThumbsUp size={14} /> 
-                            <span>إثبات التفاعل (Like/Share)</span>
+                            <span>إثبات التفاعل </span>
                         </label>
                         <div className={`mini-dropzone ${promoFile ? 'has-file' : ''}`}>
                             <input 
