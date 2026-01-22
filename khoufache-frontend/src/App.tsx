@@ -6,11 +6,9 @@ import Recharge from './pages/Recharge';
 import Contact from './pages/Contact';
 import VideoExplain from './pages/VideoExplain';
 import AdminDashboard from './AdminDashboard';
-import AdminLogin from './pages/AdminLogin'; // <--- IMPORT LOGIN PAGE
+import AdminLogin from './pages/AdminLogin'; 
 import './App.css';
 
-// --- PROTECTED ROUTE COMPONENT ---
-// This acts as a gatekeeper for the Batcave
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const token = localStorage.getItem('adminToken');
   

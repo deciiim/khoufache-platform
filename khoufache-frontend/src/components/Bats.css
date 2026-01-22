@@ -1,0 +1,61 @@
+/* src/components/Bats.css */
+
+/* 1. Define the Bat Image */
+.bat {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 105 55'%3E%3Cpath fill='%23000' d='M52.5 45c-15 0-25-10-35-10-5 0-10 5-17.5 20-5-20 0-40 10-50 10 10 20 5 25 20 5-15 15-10 25-20 10 10 15 30 10 50-7.5-15-12.5-20-17.5-20-10 0-20 10-35 10z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  z-index: 1; /* Make sure they are visible */
+  pointer-events: none;
+  filter: drop-shadow(0 4px 2px rgba(0,0,0,0.5));
+}
+
+/* 2. Flapping Wing Animation */
+.bat::after {
+  content: '';
+  display: block;
+  width: 100%; height: 100%;
+  animation: flap 0.15s infinite alternate;
+}
+
+@keyframes flap {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(0.6); }
+}
+
+/* 3. Flight Paths */
+@keyframes flyRight {
+  0% { left: -10%; top: 40%; transform: scale(0.6); }
+  50% { top: 10%; transform: scale(0.8); }
+  100% { left: 110%; top: 30%; transform: scale(0.6); }
+}
+
+@keyframes flyLeft {
+  0% { right: -10%; top: 20%; transform: scale(0.6) scaleX(-1); }
+  50% { top: 60%; transform: scale(0.9) scaleX(-1); }
+  100% { right: 110%; top: 10%; transform: scale(0.6) scaleX(-1); }
+}
+
+/* 4. Variations */
+.bat.fly-right-1 {
+  animation: flyRight 12s linear infinite;
+  top: 20%;
+}
+
+.bat.fly-left-1 {
+  animation: flyLeft 15s linear infinite;
+  top: 10%;
+  animation-delay: 1s;
+}
+
+.bat.fly-right-2 {
+  animation: flyRight 18s linear infinite;
+  top: 60%;
+  width: 30px;
+  opacity: 0.5;
+  animation-delay: 5s;
+}
